@@ -1,0 +1,19 @@
+name: Build Armbian X96 Mate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build Image
+        run: |
+          ./compile.sh BOARD=x96-mate RELEASE=bookworm BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no PREFER_DOCKER=no
+      - name: Upload Image
+        uses: actions/upload-artifact@v4
+        with:
+          name: armbian-x96-mate
+          path: output/images/*.img
