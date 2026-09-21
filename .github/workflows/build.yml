@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Image
         run: |
-          ./compile.sh BOARD=x96-mate RELEASE=bookworm BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no PREFER_DOCKER=no
+          ./compile.sh BOARD=x96-mate RELEASE=bookworm BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no
       - name: Upload Image
         uses: actions/upload-artifact@v4
         with:
