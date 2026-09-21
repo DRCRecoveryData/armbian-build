@@ -10,9 +10,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install dialog
+        run: sudo apt-get update && sudo apt-get install -y dialog
+
       - name: Build Image
         run: |
-          script -qec "./compile.sh BOARD=x96-mate RELEASE=bookworm BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no" /dev/null
+          script -qec "CI=false ./compile.sh BOARD=x96-mate RELEASE=bookworm BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no" /dev/null
 
       - name: Upload Image
         uses: actions/upload-artifact@v4
